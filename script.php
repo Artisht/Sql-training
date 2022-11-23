@@ -24,18 +24,22 @@ if ($result->num_rows > 0) {
 			$login_success = true;
 			$full_name = $row["name"];
                     echo "Welcome $full_name";
-					echo "<a href='index.php'>Exit</a>";
+					echo "<br><a href='index.php'>Exit</a>";
+					echo "<br><a href='home.html'>Ladda upp fil</a>";
 			}
 	}
 } else {
     echo "0 results";
 }
 if($login_success) {
+	$currentuser = $_POST["username"];
 	session_start();
-	$_SESSION["username"] = $_POST["username"];
+	$_SESSION["user"] = $currentuser;
+}
+else {
+	echo "<a href='index.php'>Exit</a>";
+	echo "<br>Wrong username or password";
 }
 $conn->close();
-
-
 
 ?>
